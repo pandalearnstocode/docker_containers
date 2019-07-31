@@ -30,4 +30,4 @@ else
 fi
 
 # Start Gunicorn
-exec gunicorn -k uvicorn.workers.UvicornWorker -c "$GUNICORN_CONF" "$APP_MODULE"
+exec gunicorn -k uvicorn.workers.UvicornWorker -c "$GUNICORN_CONF" "$APP_MODULE" & /bin/sh -c "jupyter lab --ip=0.0.0.0 --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_password_change=False --allow-root --no-browser"

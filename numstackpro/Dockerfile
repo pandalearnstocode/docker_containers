@@ -5,12 +5,15 @@ RUN pip install --upgrade pip
 RUN apk add gcc libc-dev make
 COPY ./numstackpro.yml /
 COPY ./numstackpro.txt /
-RUN conda env update -f numstackpro.yml \
+COPY ./numstackpro-dev.yml /
+# If prod
+# RUN conda env update -f numstackpro.yml \
+#     && rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf ~/.cache/pip \
+#     && conda clean --all && conda clean -afy 
+# Id dev
+RUN conda env update -f numstackpro-dev.yml \
     && rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf ~/.cache/pip \
     && conda clean --all && conda clean -afy 
-RUN rm -rf /var/cache/apk/* && \
-    rm -rf /tmp/* && \
-    rm -rf ~/.cache/pip
 COPY ./start.sh /start.sh
 RUN chmod +x /start.sh
 COPY ./gunicorn_conf.py /gunicorn_conf.py
@@ -20,4 +23,6 @@ COPY ./app /app
 WORKDIR /app/
 ENV PYTHONPATH=/app
 EXPOSE 80
+# If dev
+EXPOSE 8888
 CMD ["/start.sh"]
