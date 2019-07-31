@@ -74,4 +74,5 @@ dependencies:
     - uvicorn==0.8.4
     - uvloop==0.12.2
     - websockets==7.0
+    - coloredlogs==10.0
 prefix: /opt/conda
