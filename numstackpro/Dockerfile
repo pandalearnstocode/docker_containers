@@ -4,14 +4,14 @@ RUN source activate base
 RUN pip install --upgrade pip
 RUN apk add gcc libc-dev make
 COPY ./numstackpro.yml /
-COPY ./numstackpro.txt /
 COPY ./numstackpro-dev.yml /
-# If prod
-# RUN conda env update -f numstackpro.yml \
-#     && rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf ~/.cache/pip \
-#     && conda clean --all && conda clean -afy 
-# Id dev
-RUN conda env update -f numstackpro-dev.yml \
+COPY ./numstackpro-staging.yml /
+COPY ./numstackpro-production.yml /
+ARG BUILD_ENV="PRODUCTION"
+RUN if [ "$BUILD_ENV" = "DEV" ]; then mv numstackpro-dev.yml numstackpro.yml ; fi
+RUN if [ "$BUILD_ENV" = "STAGING" ]; then mv numstackpro-staging.yml numstackpro.yml ; fi
+RUN if [ "$BUILD_ENV" = "PRODUCTION" ]; then mv numstackpro-production.yml numstackpro.yml ; fi
+RUN conda env update -f numstackpro.yml \
     && rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf ~/.cache/pip \
     && conda clean --all && conda clean -afy 
 COPY ./start.sh /start.sh
@@ -23,6 +23,5 @@ COPY ./app /app
 WORKDIR /app/
 ENV PYTHONPATH=/app
 EXPOSE 80
-# If dev
 EXPOSE 8888
 CMD ["/start.sh"]
