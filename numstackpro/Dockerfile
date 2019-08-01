@@ -7,7 +7,7 @@ COPY ./numstackpro.yml /
 COPY ./numstackpro-dev.yml /
 COPY ./numstackpro-staging.yml /
 COPY ./numstackpro-production.yml /
-ARG BUILD_ENV="PRODUCTION"
+ARG BUILD_ENV="DEV"
 RUN if [ "$BUILD_ENV" = "DEV" ]; then mv numstackpro-dev.yml numstackpro.yml ; fi
 RUN if [ "$BUILD_ENV" = "STAGING" ]; then mv numstackpro-staging.yml numstackpro.yml ; fi
 RUN if [ "$BUILD_ENV" = "PRODUCTION" ]; then mv numstackpro-production.yml numstackpro.yml ; fi
