@@ -17,7 +17,7 @@ dependencies:
   - bottleneck=1.2.1=py37h035aef0_1
   - bzip2=1.0.8=h7b6447c_0
   - ca-certificates=2019.5.15=0
-  - certifi=2019.6.16=py37_1
+  - certifi=2019.6.16=py37_0
   - cffi=1.12.3=py37h2e261b9_0
   - chardet=3.0.4=py37_1003
   - conda=4.7.10=py37_0
@@ -70,6 +70,7 @@ dependencies:
   - libuuid=1.0.3=h1bed415_2
   - libxcb=1.13=h1bed415_1
   - libxml2=2.9.9=hea5a465_1
+  - line_profiler=2.1.2=py37h14c3975_0
   - llvmlite=0.29.0=py37hd408876_0
   - lz4-c=1.8.1.2=h14c3975_0
   - lzo=2.10=h49e0be7_2
@@ -86,7 +87,7 @@ dependencies:
   - numba=0.44.1=py37h962f231_0
   - numpy=1.16.3=py37h7e9f1db_0
   - numpy-base=1.16.3=py37hde5b4d6_0
-  - openssl=1.1.1c=h7b6447c_1
+  - openssl=1.1.1=h7b6447c_0
   - packaging=19.0=py37_0
   - pandas=0.24.2=py37he6710b0_0
   - pandoc=2.2.3.2=0
