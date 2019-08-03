@@ -8,4 +8,13 @@ RUN pip install --upgrade pip
 RUN apk add --no-cache --virtual .build-deps gcc libc-dev make \
     && pip3 --no-cache-dir install -r production.txt \
     && apk del .build-deps gcc libc-dev make
-RUN source activate base
+COPY ./start.sh /start.sh
+RUN chmod +x /start.sh
+COPY ./gunicorn_conf.py /gunicorn_conf.py
+COPY ./start-reload.sh /start-reload.sh
+RUN chmod +x /start-reload.sh
+COPY ./app /app
+WORKDIR /app/
+ENV PYTHONPATH=/app
+EXPOSE 80
+CMD ["/start.sh"]
